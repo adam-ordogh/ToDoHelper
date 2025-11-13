@@ -3,10 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ToDoHelper"
+        xmlns:vm="clr-namespace:ToDoHelper.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ToDo Helper" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen">
 
-    </Grid>
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <DockPanel Margin="15">
+        <!-- Gombok -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <Button Content="Új feladat"
+                    Command="{Binding AddTaskCommand}"
+                    Width="100"
+                    Margin="0,0,10,0"/>
+            <Button Content="Mentés"
+                    Command="{Binding SaveCommand}"
+                    Width="100"/>
+        </StackPanel>
+
+        <!-- Lista -->
+        <ListBox ItemsSource="{Binding Tasks}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" Padding="5">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsDone}" Margin="0,0,10,0"/>
+                                <TextBox Text="{Binding Title}" Width="200"/>
+                            </StackPanel>
+                            <TextBox Text="{Binding Description}" 
+                                     FontSize="12"
+                                     Foreground="Gray"
+                                     Margin="20,2,0,0"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
 </Window>

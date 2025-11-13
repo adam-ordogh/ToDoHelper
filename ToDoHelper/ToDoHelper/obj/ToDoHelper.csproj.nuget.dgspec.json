@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\adamo\\Desktop\\Iskola\\Mgr\\3. Szemeszter\\Szoftverprojektek menedzselése\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj": {}
+    "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\adamo\\Desktop\\Iskola\\Mgr\\3. Szemeszter\\Szoftverprojektek menedzselése\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj": {
+    "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\adamo\\Desktop\\Iskola\\Mgr\\3. Szemeszter\\Szoftverprojektek menedzselése\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj",
+        "projectUniqueName": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj",
         "projectName": "ToDoHelper",
-        "projectPath": "C:\\Users\\adamo\\Desktop\\Iskola\\Mgr\\3. Szemeszter\\Szoftverprojektek menedzselése\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj",
+        "projectPath": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ToDoHelper.csproj",
         "packagesPath": "C:\\Users\\adamo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\adamo\\Desktop\\Iskola\\Mgr\\3. Szemeszter\\Szoftverprojektek menedzselése\\ToDoHelper\\ToDoHelper\\ToDoHelper\\obj\\",
+        "outputPath": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
