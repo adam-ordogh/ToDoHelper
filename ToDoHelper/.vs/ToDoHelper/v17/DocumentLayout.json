@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Projects\\ToDoHelper\\ToDoHelper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|c:\\projects\\todohelper\\todohelper\\todohelper\\managers\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|solutionrelative:todohelper\\managers\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|c:\\projects\\todohelper\\todohelper\\todohelper\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|solutionrelative:todohelper\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -21,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|c:\\projects\\todohelper\\todohelper\\todohelper\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|solutionrelative:todohelper\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|c:\\projects\\todohelper\\todohelper\\todohelper\\managers\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{04E18CE5-488B-43A2-A857-72C05B560C01}|ToDoHelper\\ToDoHelper.csproj|solutionrelative:todohelper\\managers\\taskmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +38,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "ToDoHelper\\ViewModels\\MainViewModel.cs",
               "ToolTip": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\ViewModels\\MainViewModel.cs",
               "RelativeToolTip": "ToDoHelper\\ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA7wCgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-13T15:28:59.47Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ToDoHelper\\MainWindow.xaml",
@@ -63,20 +63,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "TaskManager.cs",
               "DocumentMoniker": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\Managers\\TaskManager.cs",
               "RelativeDocumentMoniker": "ToDoHelper\\Managers\\TaskManager.cs",
               "ToolTip": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\Managers\\TaskManager.cs",
               "RelativeToolTip": "ToDoHelper\\Managers\\TaskManager.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T15:26:27.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T15:26:27.366Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "TaskItem.cs",
               "DocumentMoniker": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\Models\\TaskItem.cs",
               "RelativeDocumentMoniker": "ToDoHelper\\Models\\TaskItem.cs",
@@ -89,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Projects\\ToDoHelper\\ToDoHelper\\ToDoHelper\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ToDoHelper\\MainWindow.xaml.cs",
@@ -97,7 +96,8 @@
               "RelativeToolTip": "ToDoHelper\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T15:12:50.307Z"
+              "WhenOpened": "2025-11-10T15:12:50.307Z",
+              "EditorCaption": ""
             }
           ]
         }

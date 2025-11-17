@@ -11,12 +11,15 @@ namespace ToDoHelper.ViewModels
         public ObservableCollection<TaskItem> Tasks { get; set; }
         public ICommand AddTaskCommand { get; }
         public ICommand SaveCommand { get; }
+        public ICommand RemoveTaskCommand { get; }
+
 
         public MainViewModel()
         {
             Tasks = new ObservableCollection<TaskItem>(TaskManager.LoadTasks());
             AddTaskCommand = new RelayCommand(AddTask);
             SaveCommand = new RelayCommand(SaveTasks);
+            RemoveTaskCommand = new RelayCommand(RemoveTask);
         }
 
         private void AddTask(object parameter)
@@ -27,6 +30,14 @@ namespace ToDoHelper.ViewModels
         private void SaveTasks(object parameter)
         {
             TaskManager.SaveTasks(new List<TaskItem>(Tasks));
+        }
+
+        private void RemoveTask(object parameter)
+        {
+            if (parameter is TaskItem task && Tasks.Contains(task))
+            {
+                Tasks.Remove(task);
+            }
         }
     }
 }
