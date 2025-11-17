@@ -29,6 +29,18 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" Padding="5">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="LightCoral" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDone}" Value="True">
+                                        <Setter Property="Background" Value="LightGreen" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding IsDone}" Margin="0,0,10,0"/>

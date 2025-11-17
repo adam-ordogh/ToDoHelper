@@ -46,8 +46,7 @@
               "RelativeToolTip": "ToDoHelper\\ViewModels\\MainViewModel.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAA7wCgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T15:28:59.47Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T15:28:59.47Z"
             },
             {
               "$type": "Document",
@@ -83,8 +82,7 @@
               "RelativeToolTip": "ToDoHelper\\Models\\TaskItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T10:46:35.168Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T10:46:35.168Z"
             },
             {
               "$type": "Document",
@@ -96,8 +94,7 @@
               "RelativeToolTip": "ToDoHelper\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T15:12:50.307Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T15:12:50.307Z"
             }
           ]
         }
