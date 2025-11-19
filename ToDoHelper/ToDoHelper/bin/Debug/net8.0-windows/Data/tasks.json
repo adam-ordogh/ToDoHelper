@@ -6,7 +6,17 @@
   },
   {
     "Title": "\u00DAj feladat",
+    "Description": null,
+    "IsDone": false
+  },
+  {
+    "Title": "\u00DAj feladat",
     "Description": "asdxycyxc\r\nasdascxy\r\nasdads",
+    "IsDone": true
+  },
+  {
+    "Title": "\u00DAj feladat",
+    "Description": "asdsadasd\r\nasdasd\r\nyxc\r\nyxc\r\n\r\nasdasdasd\r\nasdasd                                                                                                                           asd",
     "IsDone": true
   },
   {

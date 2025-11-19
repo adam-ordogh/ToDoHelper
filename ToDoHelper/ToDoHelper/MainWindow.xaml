@@ -25,10 +25,16 @@
         </StackPanel>
 
         <!-- Lista -->
-        <ListBox ItemsSource="{Binding Tasks}">
+        <ListBox x:Name="TaskList"
+         ItemsSource="{Binding Tasks}"
+         PreviewMouseLeftButtonDown="TaskList_PreviewMouseLeftButtonDown"
+         PreviewMouseMove="TaskList_PreviewMouseMove"
+         AllowDrop="True"
+         Drop="TaskList_Drop">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" Padding="5">
+                        
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="LightCoral" />
