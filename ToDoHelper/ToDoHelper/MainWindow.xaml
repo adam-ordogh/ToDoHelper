@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ToDo Helper" Height="550" Width="700"
         WindowStartupLocation="CenterScreen"
-        Background="#F5F5F7">
+        Background="#23272A">
 
     <Window.DataContext>
         <vm:MainViewModel />
@@ -46,7 +46,7 @@
 
     <DockPanel Margin="20">
         <Border DockPanel.Dock="Top" 
-                Background="White" 
+                Background="#2C2F33" 
                 CornerRadius="8"
                 Padding="15"
                 Margin="0,0,0,15"
@@ -62,7 +62,8 @@
                         Width="40" 
                         Height="40" 
                         CornerRadius="20"
-                        Background="#4CAF50"
+                        Background="#357A38"
+
                         Margin="0,0,10,0">
                     <Button Content="➕"
                             Command="{Binding AddTaskCommand}"
@@ -85,16 +86,16 @@
                         Width="40" 
                         Height="40" 
                         CornerRadius="20"
-                        Background="#2196F3">
+                        Background="#22577A">
                     <Button Content="💾"
-                            Command="{Binding SaveCommand}"
                             Width="30"
                             Height="30"
                             Background="Transparent"
                             BorderThickness="0"
                             Foreground="White"
                             FontSize="16"
-                            ToolTip="Mentés">
+                            ToolTip="Mentés"
+                            Click="SaveButton_Click">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="15"/>
@@ -148,10 +149,10 @@
 
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="LightCoral" />
+                                <Setter Property="Background" Value="#8B3A3A" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsDone}" Value="True">
-                                        <Setter Property="Background" Value="LightGreen" />
+                                        <Setter Property="Background" Value="#3A8B3A" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -188,8 +189,8 @@
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
                                                     Storyboard.TargetName="TaskCard"
                                                     FillBehavior="Stop">
-                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="LightCoral"/>
-                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="LightGreen"/>
+                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="#8B3A3A"/>
+                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#3A8B3A"/>
                                                 </ColorAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -201,8 +202,8 @@
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
                                                     Storyboard.TargetName="TaskCard"
                                                     FillBehavior="Stop">
-                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="LightGreen"/>
-                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="LightCoral"/>
+                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="#3A8B3A"/>
+                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#8B3A3A"/>
                                                 </ColorAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </BeginStoryboard>
@@ -255,7 +256,7 @@
                                         Height="28"
                                         Background="Transparent"
                                         BorderThickness="0"
-                                        Foreground="#666666"
+                                        Foreground="#23272A"
                                         FontSize="14"
                                         ToolTip="Törlés"
                                         Click="DeleteButton_Click">

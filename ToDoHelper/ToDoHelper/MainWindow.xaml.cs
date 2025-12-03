@@ -22,6 +22,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        WindowState = WindowState.Maximized;
     }
 
     private void TaskList_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -140,5 +141,18 @@ public partial class MainWindow : Window
             }
         }
     }
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is MainViewModel viewModel)
+        {
+            if (viewModel.SaveCommand.CanExecute(null))
+            {
+                viewModel.SaveCommand.Execute(null);
+                MessageBox.Show("Mentés sikeres!", "Mentve", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+    }
+
 
 }
