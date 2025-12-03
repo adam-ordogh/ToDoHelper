@@ -14,17 +14,25 @@
 
     <DockPanel Margin="15">
         <!-- Gombok -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
+        <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Button Content="➕"
-                    Command="{Binding AddTaskCommand}"
-                    Width="40"
-                    Margin="0,0,10,0"
-                    ToolTip="Új feladat"/>
+            Command="{Binding AddTaskCommand}"
+            Width="40"
+            Margin="0,0,10,0"
+            ToolTip="Új feladat"
+            Grid.Column="0"/>
             <Button Content="💾"
-                    Command="{Binding SaveCommand}"
-                    Width="40"
-                    ToolTip="Mentés"/>
-        </StackPanel>
+            Command="{Binding SaveCommand}"
+            Width="40"
+            ToolTip="Mentés"
+            Grid.Column="1"/>
+        </Grid>
+
 
 
         <!-- Lista -->
@@ -34,7 +42,10 @@
                  PreviewMouseMove="TaskList_PreviewMouseMove"
                  AllowDrop="True"
                  Drop="TaskList_Drop"
-                 PreviewDragOver="TaskList_PreviewDragOver">
+                 PreviewDragOver="TaskList_PreviewDragOver"
+                 DockPanel.Dock="Bottom"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" Padding="5">
@@ -51,23 +62,33 @@
                             </Style>
                         </Border.Style>
 
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsDone}" Margin="0,0,10,0"/>
-                                <TextBox Text="{Binding Title}" Width="200"/>
-                                <Button Content="🗑"
-                                        Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        CommandParameter="{Binding}"
-                                        Width="30"
-                                        Margin="10,0,0,0"/>
-                            </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox IsChecked="{Binding IsDone}" Margin="0,0,10,0" Grid.Column="0"/>
+                            <TextBox Text="{Binding Title}" MinWidth="100" Margin="0,0,10,0" Grid.Column="1"/>
+                            <Button Content="🗑"
+            Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            CommandParameter="{Binding}"
+            Width="30"
+            Margin="10,0,0,0"
+            Grid.Column="2"/>
                             <TextBox Text="{Binding Description}" 
-                                     FontSize="12"
-                                     Foreground="Gray"
-                                     Margin="20,2,0,0"
-                                     AcceptsReturn="True"
-                                     TextWrapping="Wrap"/>                            
-                        </StackPanel>
+             FontSize="12"
+             Foreground="Gray"
+             Margin="20,2,0,0"
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             Grid.ColumnSpan="3"
+             Grid.Row="1"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
