@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -16,6 +17,7 @@ namespace ToDoHelper;
 public partial class MainWindow : Window
 {
     private Point _dragStartPoint;
+    private Border _currentDropIndicator = null;
 
     public MainWindow()
     {
@@ -63,6 +65,55 @@ public partial class MainWindow : Window
         if (oldIndex != newIndex)
         {
             viewModel.Tasks.Move(oldIndex, newIndex);
+            viewModel.SaveTasks(null);
         }
+
+        if (_currentDropIndicator != null)
+        {
+            AnimateBorderColor(_currentDropIndicator, Colors.Transparent);
+            _currentDropIndicator = null;
+        }
+    }
+
+    private void TaskList_PreviewDragOver(object sender, DragEventArgs e)
+    {
+        var pos = e.GetPosition(TaskList);
+        var result = VisualTreeHelper.HitTest(TaskList, pos);
+
+        if (result == null) return;
+
+        var element = result.VisualHit as DependencyObject;
+
+        while (element != null && element is not Border)
+            element = VisualTreeHelper.GetParent(element);
+
+        var border = element as Border;
+
+        if (_currentDropIndicator == border)
+            return;
+
+        if (_currentDropIndicator != null)
+        {
+            AnimateBorderColor(_currentDropIndicator, Colors.Transparent);
+        }
+
+        if (border != null)
+        {
+            AnimateBorderColor(border, Colors.DeepSkyBlue);
+        }
+
+        _currentDropIndicator = border;
+    }
+
+    private void AnimateBorderColor(Border border, Color toColor)
+    {
+        var animation = new ColorAnimation
+        {
+            To = toColor,
+            Duration = TimeSpan.FromMilliseconds(200)
+        };
+
+        border.BorderBrush = new SolidColorBrush(Colors.Transparent);
+        border.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
     }
 }
