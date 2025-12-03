@@ -116,4 +116,29 @@ public partial class MainWindow : Window
         border.BorderBrush = new SolidColorBrush(Colors.Transparent);
         border.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
     }
+
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        var taskItem = button?.DataContext as TaskItem;
+
+        if (taskItem == null)
+            return;
+
+        var result = MessageBox.Show(
+            $"Biztosan törölni akarod a(z) \"{taskItem.Title}\" elemet?",
+            "Törlés megerősítése",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            var viewModel = DataContext as MainViewModel;
+            if (viewModel?.RemoveTaskCommand.CanExecute(taskItem) == true)
+            {
+                viewModel.RemoveTaskCommand.Execute(taskItem);
+            }
+        }
+    }
+
 }

@@ -251,15 +251,14 @@
 
                                 <Button Name="DeleteButton"
                                         Content="🗑"
-                                        Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        CommandParameter="{Binding}"
                                         Width="28"
                                         Height="28"
                                         Background="Transparent"
                                         BorderThickness="0"
                                         Foreground="#666666"
                                         FontSize="14"
-                                        ToolTip="Törlés">
+                                        ToolTip="Törlés"
+                                        Click="DeleteButton_Click">
                                     <Button.Triggers>
                                         <EventTrigger RoutedEvent="Button.MouseEnter">
                                             <BeginStoryboard Storyboard="{StaticResource DeleteButtonHover}"/>

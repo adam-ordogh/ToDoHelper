@@ -1,11 +1,6 @@
 [
   {
     "Title": "\u00DAj feladat",
-    "Description": "asdxycyxc\r\nasdascxy\r\nasdads",
-    "IsDone": true
-  },
-  {
-    "Title": "\u00DAj feladat",
     "Description": null,
     "IsDone": false
   },
@@ -16,8 +11,8 @@
   },
   {
     "Title": "\u00DAj feladat",
-    "Description": null,
-    "IsDone": false
+    "Description": "asdxycyxc\r\nasdascxy\r\nasdads",
+    "IsDone": true
   },
   {
     "Title": "\u00DAj feladat",
