@@ -27,7 +27,7 @@ namespace ToDoHelper.ViewModels
             Tasks.Add(new TaskItem { Title = "Új feladat", IsDone = false });
         }
 
-        private void SaveTasks(object parameter)
+        public void SaveTasks(object parameter)
         {
             TaskManager.SaveTasks(new List<TaskItem>(Tasks));
         }

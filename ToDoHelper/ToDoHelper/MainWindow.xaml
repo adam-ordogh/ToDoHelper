@@ -5,68 +5,334 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ToDoHelper.ViewModels"
         mc:Ignorable="d"
-        Title="ToDo Helper" Height="450" Width="600"
-        WindowStartupLocation="CenterScreen">
+        Title="ToDo Helper" Height="550" Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#23272A">
 
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
 
-    <DockPanel Margin="15">
-        <!-- Gombok -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button Content="Új feladat"
-                    Command="{Binding AddTaskCommand}"
-                    Width="100"
-                    Margin="0,0,10,0"/>
-            <Button Content="Mentés"
-                    Command="{Binding SaveCommand}"
-                    Width="100"/>
-        </StackPanel>
+    <Window.Resources>
+        <DropShadowEffect x:Key="CardShadow" 
+                          BlurRadius="15" 
+                          Opacity="0.1" 
+                          ShadowDepth="2" 
+                          Direction="270"/>
 
-        <!-- Lista -->
+        <Storyboard x:Key="DeleteButtonHover">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             To="1" Duration="0:0:0.2"/>
+            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                            To="#FF5252" Duration="0:0:0.2"/>
+        </Storyboard>
+
+        <Storyboard x:Key="DeleteButtonPressed">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                             To="0.9" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="0.9" Duration="0:0:0.1"/>
+        </Storyboard>
+
+        <Storyboard x:Key="DeleteButtonNormal">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                             To="1" Duration="0:0:0.1"/>
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="1" Duration="0:0:0.1"/>
+            <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                            To="Transparent" Duration="0:0:0.2"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <DockPanel Margin="20">
+        <Border DockPanel.Dock="Top" 
+                Background="#2C2F33" 
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,15"
+                Effect="{StaticResource CardShadow}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" 
+                        Width="40" 
+                        Height="40" 
+                        CornerRadius="20"
+                        Background="#357A38"
+
+                        Margin="0,0,10,0">
+                    <Button Content="➕"
+                            Command="{Binding AddTaskCommand}"
+                            Width="30"
+                            Height="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontSize="16"
+                            ToolTip="Új feladat">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+
+                <Border Grid.Column="1" 
+                        Width="40" 
+                        Height="40" 
+                        CornerRadius="20"
+                        Background="#22577A">
+                    <Button Content="💾"
+                            Width="30"
+                            Height="30"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontSize="16"
+                            ToolTip="Mentés"
+                            Click="SaveButton_Click">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+
         <ListBox x:Name="TaskList"
-         ItemsSource="{Binding Tasks}"
-         PreviewMouseLeftButtonDown="TaskList_PreviewMouseLeftButtonDown"
-         PreviewMouseMove="TaskList_PreviewMouseMove"
-         AllowDrop="True"
-         Drop="TaskList_Drop">
+                 ItemsSource="{Binding Tasks}"
+                 PreviewMouseLeftButtonDown="TaskList_PreviewMouseLeftButtonDown"
+                 PreviewMouseMove="TaskList_PreviewMouseMove"
+                 AllowDrop="True"
+                 Drop="TaskList_Drop"
+                 PreviewDragOver="TaskList_PreviewDragOver"
+                 DockPanel.Dock="Bottom"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 Background="Transparent"
+                 BorderThickness="0">
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0,0,0,12"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="0,0,0,1" BorderBrush="#DDD" Padding="5">
-                        
+                    <Border Name="TaskCard"
+                            Padding="20"
+                            CornerRadius="12"
+                            BorderThickness="0"
+                            RenderTransformOrigin="0.5,0.5">
+
+                        <Border.Effect>
+                            <StaticResource ResourceKey="CardShadow"/>
+                        </Border.Effect>
+
                         <Border.Style>
                             <Style TargetType="Border">
-                                <Setter Property="Background" Value="LightCoral" />
-
+                                <Setter Property="Background" Value="#8B3A3A" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsDone}" Value="True">
-                                        <Setter Property="Background" Value="LightGreen" />
+                                        <Setter Property="Background" Value="#3A8B3A" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
 
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsDone}" Margin="0,0,10,0"/>
-                                <TextBox Text="{Binding Title}" Width="200"/>
-                                <Button Content="🗑"
-                                        Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                        CommandParameter="{Binding}"
-                                        Width="30"
-                                        Margin="10,0,0,0"/>
-                            </StackPanel>
-                            <TextBox Text="{Binding Description}" 
-                                     FontSize="12"
-                                     Foreground="Gray"
-                                     Margin="20,2,0,0"
-                                     AcceptsReturn="True"
-                                     TextWrapping="Wrap"/>                            
-                        </StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox x:Name="DoneCheckBox"
+                                      IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Margin="0,0,15,0" 
+                                      Grid.Column="0"
+                                      VerticalAlignment="Center">
+                                <CheckBox.Style>
+                                    <Style TargetType="CheckBox">
+                                        <Setter Property="Width" Value="24"/>
+                                        <Setter Property="Height" Value="24"/>
+                                    </Style>
+                                </CheckBox.Style>
+                                <CheckBox.Triggers>
+                                    <EventTrigger RoutedEvent="CheckBox.Checked">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                    Storyboard.TargetName="TaskCard"
+                                                    FillBehavior="Stop">
+                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="#8B3A3A"/>
+                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#3A8B3A"/>
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="CheckBox.Unchecked">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" 
+                                                    Storyboard.TargetName="TaskCard"
+                                                    FillBehavior="Stop">
+                                                    <DiscreteColorKeyFrame KeyTime="0:0:0" Value="#3A8B3A"/>
+                                                    <LinearColorKeyFrame KeyTime="0:0:0.3" Value="#8B3A3A"/>
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </CheckBox.Triggers>
+                            </CheckBox>
+
+                            <Border Grid.Column="1" 
+                                    CornerRadius="6"
+                                    Padding="10,6"
+                                    Background="#F8F9FA"
+                                    VerticalAlignment="Center">
+                                <TextBox Text="{Binding Title}" 
+                                         MinWidth="100"
+                                         BorderThickness="0"
+                                         Background="Transparent"
+                                         FontSize="14"
+                                         FontWeight="SemiBold"
+                                         VerticalAlignment="Center">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="TextDecorations" Value="{x:Null}"/>
+
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsDone}" Value="True">
+                                                    <Setter Property="Foreground" Value="DarkGray"/>
+                                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Border>
+
+                            <Border Grid.Column="2" 
+                                    Width="36" 
+                                    Height="36" 
+                                    CornerRadius="18"
+                                    Margin="15,0,0,0"
+                                    Background="Transparent"
+                                    VerticalAlignment="Center">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </Border.RenderTransform>
+
+                                <Button Name="DeleteButton"
+                                        Content="🗑"
+                                        Width="28"
+                                        Height="28"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="#23272A"
+                                        FontSize="14"
+                                        ToolTip="Törlés"
+                                        Click="DeleteButton_Click">
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.MouseEnter">
+                                            <BeginStoryboard Storyboard="{StaticResource DeleteButtonHover}"/>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                                            <BeginStoryboard Storyboard="{StaticResource DeleteButtonNormal}"/>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Button.PreviewMouseDown">
+                                            <BeginStoryboard Storyboard="{StaticResource DeleteButtonPressed}"/>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Button.PreviewMouseUp">
+                                            <BeginStoryboard Storyboard="{StaticResource DeleteButtonNormal}"/>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Border>
+
+                            <Border Grid.Row="1" 
+                                    Grid.ColumnSpan="3"
+                                    CornerRadius="6"
+                                    Padding="10"
+                                    Margin="0,12,0,0"
+                                    Background="#F8F9FA">
+                                <TextBox Text="{Binding Description}" 
+                                         FontSize="13"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         BorderThickness="0"
+                                         Background="Transparent"
+                                         VerticalScrollBarVisibility="Auto"
+                                         MinHeight="40"
+                                         MaxHeight="200">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Setter Property="Foreground" Value="Gray"/>
+
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsDone}" Value="True">
+                                                    <Setter Property="Foreground" Value="#888"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+
+                                    <TextBox.Template>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                                                          VerticalScrollBarVisibility="Auto"
+                                                          Padding="0"/>
+                                        </ControlTemplate>
+                                    </TextBox.Template>
+                                </TextBox>
+                            </Border>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
         </ListBox>
     </DockPanel>
 </Window>
